@@ -20,4 +20,4 @@ after_sucess:
   - docker push xdinh99z/multi-nginx 
   - docker push xdinh99z/react-server
   - docker push xdinh99z/react-worker
-  #login
+  #login test auto
