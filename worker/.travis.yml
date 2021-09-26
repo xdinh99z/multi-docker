@@ -1,3 +1,22 @@
 sudo: required
 services:
   - docker
+
+before_install:
+  - docker build -t xdinh99z/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run xdinh99z/react-test npm test -- -- coverage
+
+after_sucess:
+  - docker build -t xdinh99z/multi-client ./client
+  - docker build -t xdinh99z/multi-nginx ./nginx
+  - docker build -t xdinh99z/react-server ./server
+  - docker build -t xdinh99z/react-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Log in to the docker CLI
+  - docker push xdinh99z/multi-client
+  - docker push xdinh99z/multi-nginx 
+  - docker push xdinh99z/react-server
+  - docker push xdinh99z/react-worker
