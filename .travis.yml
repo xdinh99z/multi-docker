@@ -26,7 +26,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-east-2
   app: multi-docker
-  env: Multidocker-env
+  env: Multidockerenv-env
   bucket_name:  elasticbeanstalk-us-east-2-108927654363
   bucket_path: docker-multi
   skip_cleanup: true
